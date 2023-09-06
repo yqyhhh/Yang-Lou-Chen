@@ -15,14 +15,18 @@ Turn in this assignment as an HTML or PDF file to ELMS. Make sure to include the
 
 -   At least one commit with your name, with a description of what you did in that commit.
 
+<<<<<<< HEAD
     \* https://github.com/yqyhhh/Yang-Lou-Chen.git
 
+=======
+>>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 ## Reading Data
 
 Download both the Angell.dta (Stata data format) dataset and the Angell.txt dataset from this website: <https://stats.idre.ucla.edu/stata/examples/ara/applied-regression-analysis-by-fox-data-files/>
 
 2\) Read in the .dta version and store in an object called `angell_stata`.
 
+<<<<<<< HEAD
 ```{r}
 library(haven)
 angell_stata<-read_dta("D:/111/SURV727/Yang-Lou-Chen/angell.dta")
@@ -52,18 +56,31 @@ head(angell_txt)
 
 ```
 
+=======
+3\) Read in the .txt version and store it in an object called `angell_txt`.
+
+4\) What are the differences between `angell_stata` and `angell_txt`? Are there differences in the classes of the individual columns?
+
+5\) Make any updates necessary so that `angell_txt` is the same as `angell_stata`.
+
+6\) Describe the Ethnic Heterogeneity variable. Use descriptive statistics such as mean, median, standard deviation, etc. How does it differ by region?
+
+>>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 ## Describing Data
 
 R comes also with many built-in datasets. The "MASS" package, for example, comes with the "Boston" dataset.
 
 7\) Install the "MASS" package, load the package. Then, load the Boston dataset.
 
+<<<<<<< HEAD
 ```{r}
 install.packages("MASS")
 library(MASS)
 data(Boston)
 ```
 
+=======
+>>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 8\) What is the type of the Boston object?
 
 9\) What is the class of the Boston object?
@@ -78,6 +95,7 @@ data(Boston)
 
 13\) Write a function that calculates 95% confidence intervals for a point estimate. The function should be called `my_CI`. When called with `my_CI(2, 0.2)`, the function should print out "The 95% CI upper bound of point estimate 2 with standard error 0.2 is 2.392. The lower bound is 1.608."
 
+<<<<<<< HEAD
 ```{r}
 my_CI2<- function(point_estimate,se){
   lower_bound<-point_estimate-1.96*se
@@ -105,10 +123,15 @@ ci<-my_CI2(2,0.2)
 ci
 ```
 
+=======
+*Note: The function should take a point estimate and its standard error as arguments. You may use the formula for 95% CI: point estimate +/- 1.96\*standard error.*
+
+>>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 *Hint: Pasting text in R can be done with:* `paste()` *and* `paste0()`
 
 14\) Create a new function called `my_CI2` that does that same thing as the `my_CI` function but outputs a vector of length 2 with the lower and upper bound of the confidence interval instead of printing out the text. Use this to find the 95% confidence interval for a point estimate of 0 and standard error 0.4.
 
+<<<<<<< HEAD
 ```{r}
 
 ```
@@ -119,10 +142,15 @@ ci
 
 ```
 
+=======
+15\) Update the `my_CI2` function to take any confidence level instead of only 95%. Call the new function `my_CI3`. You should add an argument to your function for confidence level.
+
+>>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 *Hint: Use the* `qnorm` *function to find the appropriate z-value. For example, for a 95% confidence interval, using* `qnorm(0.975)` *gives approximately 1.96.*
 
 16\) Without hardcoding any numbers in the code, find a 99% confidence interval for Ethnic Heterogeneity in the Angell dataset. Find the standard error by dividing the standard deviation by the square root of the sample size.
 
+<<<<<<< HEAD
 ```{r}
 
 ```
@@ -132,3 +160,6 @@ ci
 ```{r}
 
 ```
+=======
+17\) Write a function that you can `apply` to the Angell dataset to get 95% confidence intervals. The function should take one argument: a vector. Use if-else statements to output NA and avoid error messages if the column in the data frame is not numeric or logical.
+>>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca

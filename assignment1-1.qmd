@@ -42,30 +42,30 @@ head(angell_txt)
 
 4\) What are the differences between `angell_stata` and `angell_txt`? Are there differences in the classes of the individual columns?
 
--   There are certain variable names in angell_stata, but the column names in angell_txt are simply V1...V5
+* There are certain variable names in angell_stata, but the column names in angell_txt are simply V1...V5
 
 5\) Make any updates necessary so that `angell_txt` is the same as `angell_stata`.
 
 ```{r}
-
+colnames(angell_txt)<-c("city","morint","ethhet","geomob","region")
+head(angell_txt)
 ```
 
 6\) Describe the Ethnic Heterogeneity variable. Use descriptive statistics such as mean, median, standard deviation, etc. How does it differ by region?
 
 ```{r}
+mean(angell_stata$ethhet)
+median(angell_stata$ethhet)
+sd(angell_stata$ethhet)
 
+library(dplyr)
+angell_stata%>%
+  group_by(region)%>%
+  summarize(m=mean(angell_stata$ethhet),
+            med=median(angell_stata$ethhet),
+            sd=sd(angell_stata$ethhet))
 ```
 
-=======
-3\) Read in the .txt version and store it in an object called `angell_txt`.
-
-4\) What are the differences between `angell_stata` and `angell_txt`? Are there differences in the classes of the individual columns?
-
-5\) Make any updates necessary so that `angell_txt` is the same as `angell_stata`.
-
-6\) Describe the Ethnic Heterogeneity variable. Use descriptive statistics such as mean, median, standard deviation, etc. How does it differ by region?
-
->>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 ## Describing Data
 
 R comes also with many built-in datasets. The "MASS" package, for example, comes with the "Boston" dataset.
@@ -79,17 +79,38 @@ library(MASS)
 data(Boston)
 ```
 
-=======
->>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 8\) What is the type of the Boston object?
+```{r}
+head(Boston)
+typeof(Boston)
+```
+* The type of the object is a list.
 
 9\) What is the class of the Boston object?
+```{r}
+class(Boston)
+```
+* The class id data frame
 
 10\) How many of the suburbs in the Boston data set bound the Charles river?
+```{r}
+summary(Boston$chas)
+nsub<-506*mean(Boston$chas)
+nsub
+```
+* There $35$ suburbs set bound the Charles river.
 
 11\) Do any of the suburbs of Boston appear to have particularly high crime rates? Tax rates? Pupil-teacher ratios? Comment on the range of each variable.
+```{r}
+
+```
+
 
 12\) Describe the distribution of pupil-teacher ratio among the towns in this data set that have a per capita crime rate larger than 1. How does it differ from towns that have a per capita crime rate smaller than 1?
+```{r}
+
+```
+
 
 ## Writing Functions
 
@@ -97,10 +118,11 @@ data(Boston)
 
 <<<<<<< HEAD
 ```{r}
-my_CI2<- function(point_estimate,se){
+my_CI<- function(point_estimate,se){
   lower_bound<-point_estimate-1.96*se
   upper_bound<-point_estimate+1.96*se
-  c(lower_bound,upper_bond)
+  text <- paste("The 95% CI upper bound of point estimate", point_estimate, "with standard error", se,"is", upper_bound, ". The lower bound is", lower_bound)
+  text
 }
 
 ci<-my_CI2(2,0.2)
@@ -109,30 +131,22 @@ ci
 
 *Note: The function should take a point estimate and its standard error as arguments. You may use the formula for 95% CI: point estimate +/- 1.96\*standard error.*
 
-```{r}
-my_CI2<- function(point_estimate,se){
-  lower_bound<-point_estimate-1.96*se
-  upper_bound<-point_estimate+1.96*se
-  text <- paste("Lower Bound:",
-                lower_bound,
-                "Upper Bound:",
-                upper_bound)
-}
-
-ci<-my_CI2(2,0.2)
-ci
-```
-
-=======
 *Note: The function should take a point estimate and its standard error as arguments. You may use the formula for 95% CI: point estimate +/- 1.96\*standard error.*
 
->>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 *Hint: Pasting text in R can be done with:* `paste()` *and* `paste0()`
 
 14\) Create a new function called `my_CI2` that does that same thing as the `my_CI` function but outputs a vector of length 2 with the lower and upper bound of the confidence interval instead of printing out the text. Use this to find the 95% confidence interval for a point estimate of 0 and standard error 0.4.
 
 <<<<<<< HEAD
 ```{r}
+my_CI2<- function(point_estimate,se){
+  lower_bound<-point_estimate-1.96*se
+  upper_bound<-point_estimate+1.96*se
+  c(lower_bound,upper_bound)
+}
+
+ci<-my_CI2(0,0.4)
+ci
 
 ```
 
@@ -142,10 +156,6 @@ ci
 
 ```
 
-=======
-15\) Update the `my_CI2` function to take any confidence level instead of only 95%. Call the new function `my_CI3`. You should add an argument to your function for confidence level.
-
->>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
 *Hint: Use the* `qnorm` *function to find the appropriate z-value. For example, for a 95% confidence interval, using* `qnorm(0.975)` *gives approximately 1.96.*
 
 16\) Without hardcoding any numbers in the code, find a 99% confidence interval for Ethnic Heterogeneity in the Angell dataset. Find the standard error by dividing the standard deviation by the square root of the sample size.
@@ -160,6 +170,4 @@ ci
 ```{r}
 
 ```
-=======
-17\) Write a function that you can `apply` to the Angell dataset to get 95% confidence intervals. The function should take one argument: a vector. Use if-else statements to output NA and avoid error messages if the column in the data frame is not numeric or logical.
->>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
+

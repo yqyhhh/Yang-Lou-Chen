@@ -1,8 +1,12 @@
 ---
 title: "Assignment 1"
-subtitle: "Due at 11:59pm on September 19."
-format: pdf
-editor: visual
+author: "Chloe Chen"
+date: "9/7/2023"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+fontsize: 12pt
 ---
 
 Turn in this assignment as an HTML or PDF file to ELMS. Make sure to include the R Markdown or Quarto file that was used to generate it. You should include the questions in your solutions. You may use the qmd file of the assignment provided to insert your answers.
@@ -15,8 +19,7 @@ Turn in this assignment as an HTML or PDF file to ELMS. Make sure to include the
 
 -   At least one commit with your name, with a description of what you did in that commit.
 
-<<<<<<< HEAD
-    \* https://github.com/yqyhhh/Yang-Lou-Chen.git
+* https://github.com/yqyhhh/Yang-Lou-Chen.git
 
 =======
 >>>>>>> e2d0f9896118b05bc2008ad129dd8e9ad480f4ca
@@ -90,7 +93,7 @@ typeof(Boston)
 ```{r}
 class(Boston)
 ```
-* The class id data frame
+* The class id data frame.
 
 10\) How many of the suburbs in the Boston data set bound the Charles river?
 ```{r}
@@ -102,12 +105,51 @@ nsub
 
 11\) Do any of the suburbs of Boston appear to have particularly high crime rates? Tax rates? Pupil-teacher ratios? Comment on the range of each variable.
 ```{r}
+range_crim <- range(Boston$crim)
+cat("Range of crim:", range_crim, "\n")
+range_tax <- range(Boston$tax)
+cat("Range of tax:", range_tax, "\n")
+range_ptratio <- range(Boston$ptratio)
+cat("Range of ptratio:", range_ptratio, "\n")
 
+boxplot(Boston$crim, main="Boxplot of crim", 
+        xlab="crim", ylab="Values",
+        col=c("blue"))
+boxplot(Boston$tax, main="Boxplot of tax", 
+        xlab="tax", ylab="Values",
+        col=c("green"))
+boxplot(Boston$tax, main="Boxplot of ptratio", 
+        xlab="ptratio", ylab="Values",
+        col=c("red"))
 ```
+* The range of crime is $[0.00632, 88.9762]$; the range of tax is $[187, 711]$; the range of ptratio is $[12.6, 22]$.
+* As we can see from the ranges and box-plots, there are particularly high crime rates in several suburbs.
+* That doesn't exist in the other two viriables. The range of tax is larger than ptratio, but there are no outliers occur. ptratio is the most compactly distributed data, with little difference between suburbs on this variable.
 
 
 12\) Describe the distribution of pupil-teacher ratio among the towns in this data set that have a per capita crime rate larger than 1. How does it differ from towns that have a per capita crime rate smaller than 1?
 ```{r}
+subset1 <- subset(Boston, Boston$crim > 1)
+subset2 <- subset(Boston, Boston$crim <= 1)
+
+#summary
+summary(subset1$ptratio)
+summary(subset2$ptratio)
+
+#Histogram
+hist(subset1$ptratio)
+hist(subset2$ptratio)
+
+#Box plot
+boxplot(subset1$ptratio)
+boxplot(subset2$ptratio)
+
+
+# Conduct statistical tests
+shapiro.test(subset1$ptratio)
+shapiro.test(subset2$ptratio)
+
+
 
 ```
 
@@ -125,7 +167,7 @@ my_CI<- function(point_estimate,se){
   text
 }
 
-ci<-my_CI2(2,0.2)
+ci<-my_CI(2,0.2)
 ci
 ```
 
@@ -153,7 +195,24 @@ ci
 15\) Update the `my_CI2` function to take any confidence level instead of only 95%. Call the new function `my_CI3`. You should add an argument to your function for confidence level.
 
 ```{r}
+my_CI3 <- function(point_estimate, se, confidence_level) {
+  if (confidence_level <= 0 || confidence_level >= 1) {
+    stop("Confidence level must be between 0 and 1")
+  }
+  
+  z_value <- qnorm(1 - (1 - confidence_level) / 2)
+  
+  lower_bound <- point_estimate - z_value * se
+  upper_bound <- point_estimate + z_value * se
+  
+  c(lower_bound, upper_bound)
+}
 
+ci_90 <- my_CI3(0, 0.4, 0.90)
+print(ci_90)
+
+ci_99 <- my_CI3(0, 0.4, 0.99)
+print(ci_99)
 ```
 
 *Hint: Use the* `qnorm` *function to find the appropriate z-value. For example, for a 95% confidence interval, using* `qnorm(0.975)` *gives approximately 1.96.*
@@ -162,12 +221,38 @@ ci
 
 <<<<<<< HEAD
 ```{r}
-
+se_ethhet <- sd(angell_stata$ethhet)/sqrt(nrow(angell_stata))
+mean_ethhet <- mean(angell_stata$ethhet)
+ethhetCI<-my_CI3(mean_ethhet, se_ethhet, 0.99)
+ethhetCI
 ```
+* The 99% confidence interval for Ethnic Heterogeneity is $[23.35425, 39.38993]$.
 
 17\) Write a function that you can `apply` to the Angell dataset to get 95% confidence intervals. The function should take one argument: a vector. Use if-else statements to output NA and avoid error messages if the column in the data frame is not numeric or logical.
 
 ```{r}
+my_CI4 <- function(column) {
+  if (is.numeric(column) |is.logical(column)) {
+    mean_value <- mean(column, na.rm = TRUE)
+    se <- sqrt(var(column, na.rm = TRUE) / length(column))
+    z_value <- qnorm(0.975)  # 95% confidence interval
+    
+    lower_bound <- mean_value - z_value * se
+    upper_bound <- mean_value + z_value * se
+    
+    return(c(lower_bound, upper_bound))
+  } else {
+    return(NA)
+  }
+}
 
+
+result <- apply(angell_stata, 2, my_CI4) ## Apply this function to each column of Agell
+
+result
+
+```
+```{r}
+is.numeric(angell_stata$morint)
 ```
 

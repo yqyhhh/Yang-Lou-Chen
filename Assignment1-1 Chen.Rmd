@@ -2,14 +2,14 @@
 title: "Assignment1-1 Chen"
 author: "Chloe Chen"
 date: "2023-09-08"
-number_sections: yes
-fontsize: 12pt
-output: 
-  html_document: 
+output:
+  pdf_document: default
+  html_document:
     theme: paper
     highlight: textmate
+fontsize: 12pt
+number_sections: yes
 ---
-
 
 Turn in this assignment as an HTML or PDF file to ELMS. Make sure to include the R Markdown or Quarto file that was used to generate it. You should include the questions in your solutions. You may use the qmd file of the assignment provided to insert your answers.
 

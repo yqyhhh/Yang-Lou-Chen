@@ -1,0 +1,857 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  12pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Assignment1-1 Chen},
+  pdfauthor={Chloe Chen},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Assignment1-1 Chen}
+\author{Chloe Chen}
+\date{2023-09-08}
+
+\begin{document}
+\maketitle
+
+Turn in this assignment as an HTML or PDF file to ELMS. Make sure to
+include the R Markdown or Quarto file that was used to generate it. You
+should include the questions in your solutions. You may use the qmd file
+of the assignment provided to insert your answers.
+
+\hypertarget{git-and-github}{%
+\subsection{Git and GitHub}\label{git-and-github}}
+
+\hypertarget{provide-the-link-to-the-github-repo-that-you-used-to-practice-git-from-week-1.-it-should-have}{%
+\subsubsection{1) Provide the link to the GitHub repo that you used to
+practice git from Week 1. It should
+have:}\label{provide-the-link-to-the-github-repo-that-you-used-to-practice-git-from-week-1.-it-should-have}}
+
+\begin{itemize}
+\item
+  Your name on the README file.
+\item
+  At least one commit with your name, with a description of what you did
+  in that commit.
+\item
+  \(https://github.com/yqyhhh/Yang-Lou-Chen.git\)
+\end{itemize}
+
+======= \#\# Reading Data
+
+Download both the Angell.dta (Stata data format) dataset and the
+Angell.txt dataset from this website:
+\url{https://stats.idre.ucla.edu/stata/examples/ara/applied-regression-analysis-by-fox-data-files/}
+
+\hypertarget{read-in-the-.dta-version-and-store-in-an-object-called-angell_stata.}{%
+\subsubsection{\texorpdfstring{2) Read in the .dta version and store in
+an object called
+\texttt{angell\_stata}.}{2) Read in the .dta version and store in an object called angell\_stata.}}\label{read-in-the-.dta-version-and-store-in-an-object-called-angell_stata.}}
+
+\textless\textless\textless\textless\textless\textless\textless{} HEAD
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(haven)}
+\NormalTok{angell\_stata}\OtherTok{\textless{}{-}}\FunctionTok{read\_dta}\NormalTok{(}\StringTok{"D:/111/SURV727/Yang{-}Lou{-}Chen/angell.dta"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(angell\_stata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##   city       morint ethhet geomob region
+##   <chr>       <dbl>  <dbl>  <dbl> <chr> 
+## 1 Rochester    19     20.6   15   E     
+## 2 Syracuse     17     15.6   20.2 E     
+## 3 Worcester    16.4   22.1   13.6 E     
+## 4 Erie         16.2   14     14.8 E     
+## 5 Milwaukee    15.8   17.4   17.6 MW    
+## 6 Bridgeport   15.3   27.9   17.5 E
+\end{verbatim}
+
+\hypertarget{read-in-the-.txt-version-and-store-it-in-an-object-called-angell_txt.}{%
+\subsubsection{\texorpdfstring{3) Read in the .txt version and store it
+in an object called
+\texttt{angell\_txt}.}{3) Read in the .txt version and store it in an object called angell\_txt.}}\label{read-in-the-.txt-version-and-store-it-in-an-object-called-angell_txt.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{angell\_txt}\OtherTok{\textless{}{-}}\FunctionTok{read.table}\NormalTok{(}\StringTok{"https://stats.oarc.ucla.edu/wp{-}content/uploads/2016/02/angell.txt"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(angell\_txt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           V1   V2   V3   V4 V5
+## 1  Rochester 19.0 20.6 15.0  E
+## 2   Syracuse 17.0 15.6 20.2  E
+## 3  Worcester 16.4 22.1 13.6  E
+## 4       Erie 16.2 14.0 14.8  E
+## 5  Milwaukee 15.8 17.4 17.6 MW
+## 6 Bridgeport 15.3 27.9 17.5  E
+\end{verbatim}
+
+\hypertarget{what-are-the-differences-between-angell_stata-and-angell_txt-are-there-differences-in-the-classes-of-the-individual-columns}{%
+\subsubsection{\texorpdfstring{4) What are the differences between
+\texttt{angell\_stata} and \texttt{angell\_txt}? Are there differences
+in the classes of the individual
+columns?}{4) What are the differences between angell\_stata and angell\_txt? Are there differences in the classes of the individual columns?}}\label{what-are-the-differences-between-angell_stata-and-angell_txt-are-there-differences-in-the-classes-of-the-individual-columns}}
+
+\begin{itemize}
+\tightlist
+\item
+  There are certain variable names in angell\_stata, but the column
+  names in angell\_txt are simply V1\ldots V5
+\end{itemize}
+
+\hypertarget{make-any-updates-necessary-so-that-angell_txt-is-the-same-as-angell_stata.}{%
+\subsubsection{\texorpdfstring{5) Make any updates necessary so that
+\texttt{angell\_txt} is the same as
+\texttt{angell\_stata}.}{5) Make any updates necessary so that angell\_txt is the same as angell\_stata.}}\label{make-any-updates-necessary-so-that-angell_txt-is-the-same-as-angell_stata.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(angell\_txt)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"city"}\NormalTok{,}\StringTok{"morint"}\NormalTok{,}\StringTok{"ethhet"}\NormalTok{,}\StringTok{"geomob"}\NormalTok{,}\StringTok{"region"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(angell\_txt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         city morint ethhet geomob region
+## 1  Rochester   19.0   20.6   15.0      E
+## 2   Syracuse   17.0   15.6   20.2      E
+## 3  Worcester   16.4   22.1   13.6      E
+## 4       Erie   16.2   14.0   14.8      E
+## 5  Milwaukee   15.8   17.4   17.6     MW
+## 6 Bridgeport   15.3   27.9   17.5      E
+\end{verbatim}
+
+\hypertarget{describe-the-ethnic-heterogeneity-variable.-use-descriptive-statistics-such-as-mean-median-standard-deviation-etc.-how-does-it-differ-by-region}{%
+\subsubsection{6) Describe the Ethnic Heterogeneity variable. Use
+descriptive statistics such as mean, median, standard deviation, etc.
+How does it differ by
+region?}\label{describe-the-ethnic-heterogeneity-variable.-use-descriptive-statistics-such-as-mean-median-standard-deviation-etc.-how-does-it-differ-by-region}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31.37209
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 23.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.41149
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 载入程辑包：'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{angell\_stata}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(region)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{m=}\FunctionTok{mean}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet),}
+            \AttributeTok{med=}\FunctionTok{median}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet),}
+            \AttributeTok{sd=}\FunctionTok{sd}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+##   region     m   med    sd
+##   <chr>  <dbl> <dbl> <dbl>
+## 1 E       31.4  23.7  20.4
+## 2 MW      31.4  23.7  20.4
+## 3 S       31.4  23.7  20.4
+## 4 W       31.4  23.7  20.4
+\end{verbatim}
+
+\hypertarget{describing-data}{%
+\subsection{Describing Data}\label{describing-data}}
+
+R comes also with many built-in datasets. The ``MASS'' package, for
+example, comes with the ``Boston'' dataset.
+
+\hypertarget{install-the-mass-package-load-the-package.-then-load-the-boston-dataset.}{%
+\subsubsection{7) Install the ``MASS'' package, load the package. Then,
+load the Boston
+dataset.}\label{install-the-mass-package-load-the-package.-then-load-the-boston-dataset.}}
+
+\textless\textless\textless\textless\textless\textless\textless{} HEAD
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 载入程辑包：'MASS'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(Boston)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{what-is-the-type-of-the-boston-object}{%
+\subsubsection{8) What is the type of the Boston
+object?}\label{what-is-the-type-of-the-boston-object}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Boston)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
+##   medv
+## 1 24.0
+## 2 21.6
+## 3 34.7
+## 4 33.4
+## 5 36.2
+## 6 28.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{typeof}\NormalTok{(Boston)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  The type of the object is a list.
+\end{itemize}
+
+\hypertarget{what-is-the-class-of-the-boston-object}{%
+\subsubsection{9) What is the class of the Boston
+object?}\label{what-is-the-class-of-the-boston-object}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(Boston)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  The class id data frame.
+\end{itemize}
+
+\hypertarget{how-many-of-the-suburbs-in-the-boston-data-set-bound-the-charles-river}{%
+\subsubsection{10) How many of the suburbs in the Boston data set bound
+the Charles
+river?}\label{how-many-of-the-suburbs-in-the-boston-data-set-bound-the-charles-river}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{chas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.00000 0.06917 0.00000 1.00000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nsub}\OtherTok{\textless{}{-}}\DecValTok{506}\SpecialCharTok{*}\FunctionTok{mean}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{chas)}
+\NormalTok{nsub}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 35
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  There \(35\) suburbs set bound the Charles river.
+\end{itemize}
+
+\hypertarget{do-any-of-the-suburbs-of-boston-appear-to-have-particularly-high-crime-rates-tax-rates-pupil-teacher-ratios-comment-on-the-range-of-each-variable.}{%
+\subsubsection{11) Do any of the suburbs of Boston appear to have
+particularly high crime rates? Tax rates? Pupil-teacher ratios? Comment
+on the range of each
+variable.}\label{do-any-of-the-suburbs-of-boston-appear-to-have-particularly-high-crime-rates-tax-rates-pupil-teacher-ratios-comment-on-the-range-of-each-variable.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{range\_crim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{crim)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Range of crim:"}\NormalTok{, range\_crim, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Range of crim: 0.00632 88.9762
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{range\_tax }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{tax)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Range of tax:"}\NormalTok{, range\_tax, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Range of tax: 187 711
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{range\_ptratio }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{ptratio)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Range of ptratio:"}\NormalTok{, range\_ptratio, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Range of ptratio: 12.6 22
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{crim, }\AttributeTok{main=}\StringTok{"Boxplot of crim"}\NormalTok{, }
+        \AttributeTok{xlab=}\StringTok{"crim"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Values"}\NormalTok{,}
+        \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{tax, }\AttributeTok{main=}\StringTok{"Boxplot of tax"}\NormalTok{, }
+        \AttributeTok{xlab=}\StringTok{"tax"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Values"}\NormalTok{,}
+        \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(Boston}\SpecialCharTok{$}\NormalTok{tax, }\AttributeTok{main=}\StringTok{"Boxplot of ptratio"}\NormalTok{, }
+        \AttributeTok{xlab=}\StringTok{"ptratio"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Values"}\NormalTok{,}
+        \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-9-3.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  The range of crime is \([0.00632, 88.9762]\); the range of tax is
+  \([187, 711]\); the range of ptratio is \([12.6, 22]\).
+\item
+  As we can see from the ranges and box-plots, there are particularly
+  high crime rates in several suburbs.
+\item
+  That doesn't exist in the other two viriables. The range of tax is
+  larger than ptratio, but there are no outliers occur. ptratio is the
+  most compactly distributed data, with little difference between
+  suburbs on this variable.
+\end{itemize}
+
+\hypertarget{describe-the-distribution-of-pupil-teacher-ratio-among-the-towns-in-this-data-set-that-have-a-per-capita-crime-rate-larger-than-1.-how-does-it-differ-from-towns-that-have-a-per-capita-crime-rate-smaller-than-1}{%
+\subsubsection{12) Describe the distribution of pupil-teacher ratio
+among the towns in this data set that have a per capita crime rate
+larger than 1. How does it differ from towns that have a per capita
+crime rate smaller than
+1?}\label{describe-the-distribution-of-pupil-teacher-ratio-among-the-towns-in-this-data-set-that-have-a-per-capita-crime-rate-larger-than-1.-how-does-it-differ-from-towns-that-have-a-per-capita-crime-rate-smaller-than-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subset1 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(Boston, Boston}\SpecialCharTok{$}\NormalTok{crim }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{)}
+\NormalTok{subset2 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(Boston, Boston}\SpecialCharTok{$}\NormalTok{crim }\SpecialCharTok{\textless{}=} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\#summary}
+\FunctionTok{summary}\NormalTok{(subset1}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   14.70   20.20   20.20   19.29   20.20   21.20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(subset2}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.60   16.80   18.30   18.02   19.20   22.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(subset1}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.484129
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(subset2}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.243581
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Box plot}
+\FunctionTok{boxplot}\NormalTok{(subset1}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(subset2}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Histogram}
+\FunctionTok{hist}\NormalTok{(subset1}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-10-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(subset2}\SpecialCharTok{$}\NormalTok{ptratio)}
+
+\CommentTok{\#Q{-}Q plot \& Conduct statistical tests}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-10-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(subset1}\SpecialCharTok{$}\NormalTok{ptratio, }\AttributeTok{main=}\StringTok{"ptratio1"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"y\_\{i:n\}"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"m\_\{i:n\}"}\NormalTok{) }
+\FunctionTok{qqline}\NormalTok{(subset1}\SpecialCharTok{$}\NormalTok{ptratio, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-10-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(subset2}\SpecialCharTok{$}\NormalTok{ptratio, }\AttributeTok{main=}\StringTok{"ptratio2"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"y\_\{i:n\}"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"m\_\{i:n\}"}\NormalTok{) }
+\FunctionTok{qqline}\NormalTok{(subset2}\SpecialCharTok{$}\NormalTok{ptratio, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment1-1-Chen_files/figure-latex/unnamed-chunk-10-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(subset1}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  subset1$ptratio
+## W = 0.51756, p-value < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(subset2}\SpecialCharTok{$}\NormalTok{ptratio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  subset2$ptratio
+## W = 0.96226, p-value = 1.453e-07
+\end{verbatim}
+
+\emph{Measures of Central Tendency} The pupil-teacher ratio among the
+towns in this data set that have a per capita crime rate larger than 1
+has a mean of \(19.29\) and a median of \(20.20\). \emph{Measures of
+Dispersion} The pupil-teacher ratio among the towns in this data set
+that have a per capita crime rate larger than 1 has a variance of
+\(4.484129\). \emph{Distribution Shape} In Shapiro-Wilk normality test,
+p-value \textless{} 0.05, and from the histogram, as well as the
+qq-plot, homeprice does not appear to follow a normal distribution.
+\emph{Outliers} From the box plot we can see that there are \(4\)
+outliers in the distribution.
+
+\hypertarget{writing-functions}{%
+\subsection{Writing Functions}\label{writing-functions}}
+
+\hypertarget{write-a-function-that-calculates-95-confidence-intervals-for-a-point-estimate.-the-function-should-be-called-my_ci.-when-called-with-my_ci2-0.2-the-function-should-print-out-the-95-ci-upper-bound-of-point-estimate-2-with-standard-error-0.2-is-2.392.-the-lower-bound-is-1.608.}{%
+\subsubsection{\texorpdfstring{13) Write a function that calculates 95\%
+confidence intervals for a point estimate. The function should be called
+\texttt{my\_CI}. When called with \texttt{my\_CI(2,\ 0.2)}, the function
+should print out ``The 95\% CI upper bound of point estimate 2 with
+standard error 0.2 is 2.392. The lower bound is
+1.608.''}{13) Write a function that calculates 95\% confidence intervals for a point estimate. The function should be called my\_CI. When called with my\_CI(2, 0.2), the function should print out ``The 95\% CI upper bound of point estimate 2 with standard error 0.2 is 2.392. The lower bound is 1.608.''}}\label{write-a-function-that-calculates-95-confidence-intervals-for-a-point-estimate.-the-function-should-be-called-my_ci.-when-called-with-my_ci2-0.2-the-function-should-print-out-the-95-ci-upper-bound-of-point-estimate-2-with-standard-error-0.2-is-2.392.-the-lower-bound-is-1.608.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_CI}\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(point\_estimate,se)\{}
+\NormalTok{  lower\_bound}\OtherTok{\textless{}{-}}\NormalTok{point\_estimate}\FloatTok{{-}1.96}\SpecialCharTok{*}\NormalTok{se}
+\NormalTok{  upper\_bound}\OtherTok{\textless{}{-}}\NormalTok{point\_estimate}\FloatTok{+1.96}\SpecialCharTok{*}\NormalTok{se}
+\NormalTok{  text }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\StringTok{"The 95\% CI upper bound of point estimate"}\NormalTok{, point\_estimate, }\StringTok{"with standard error"}\NormalTok{, se,}\StringTok{"is"}\NormalTok{, upper\_bound, }\StringTok{". The lower bound is"}\NormalTok{, lower\_bound)}
+\NormalTok{  text}
+\NormalTok{\}}
+
+\NormalTok{ci}\OtherTok{\textless{}{-}}\FunctionTok{my\_CI}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.2}\NormalTok{)}
+\NormalTok{ci}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The 95% CI upper bound of point estimate 2 with standard error 0.2 is 2.392 . The lower bound is 1.608"
+\end{verbatim}
+
+\emph{Note: The function should take a point estimate and its standard
+error as arguments. You may use the formula for 95\% CI: point estimate
++/- 1.96*standard error.}
+
+\emph{Note: The function should take a point estimate and its standard
+error as arguments. You may use the formula for 95\% CI: point estimate
++/- 1.96*standard error.}
+
+\emph{Hint: Pasting text in R can be done with:} \texttt{paste()}
+\emph{and} \texttt{paste0()}
+
+\hypertarget{create-a-new-function-called-my_ci2-that-does-that-same-thing-as-the-my_ci-function-but-outputs-a-vector-of-length-2-with-the-lower-and-upper-bound-of-the-confidence-interval-instead-of-printing-out-the-text.-use-this-to-find-the-95-confidence-interval-for-a-point-estimate-of-0-and-standard-error-0.4.}{%
+\subsubsection{\texorpdfstring{14) Create a new function called
+\texttt{my\_CI2} that does that same thing as the \texttt{my\_CI}
+function but outputs a vector of length 2 with the lower and upper bound
+of the confidence interval instead of printing out the text. Use this to
+find the 95\% confidence interval for a point estimate of 0 and standard
+error
+0.4.}{14) Create a new function called my\_CI2 that does that same thing as the my\_CI function but outputs a vector of length 2 with the lower and upper bound of the confidence interval instead of printing out the text. Use this to find the 95\% confidence interval for a point estimate of 0 and standard error 0.4.}}\label{create-a-new-function-called-my_ci2-that-does-that-same-thing-as-the-my_ci-function-but-outputs-a-vector-of-length-2-with-the-lower-and-upper-bound-of-the-confidence-interval-instead-of-printing-out-the-text.-use-this-to-find-the-95-confidence-interval-for-a-point-estimate-of-0-and-standard-error-0.4.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_CI2}\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(point\_estimate,se)\{}
+\NormalTok{  lower\_bound}\OtherTok{\textless{}{-}}\NormalTok{point\_estimate}\FloatTok{{-}1.96}\SpecialCharTok{*}\NormalTok{se}
+\NormalTok{  upper\_bound}\OtherTok{\textless{}{-}}\NormalTok{point\_estimate}\FloatTok{+1.96}\SpecialCharTok{*}\NormalTok{se}
+  \FunctionTok{c}\NormalTok{(lower\_bound,upper\_bound)}
+\NormalTok{\}}
+
+\NormalTok{ci}\OtherTok{\textless{}{-}}\FunctionTok{my\_CI2}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.4}\NormalTok{)}
+\NormalTok{ci}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.784  0.784
+\end{verbatim}
+
+\hypertarget{update-the-my_ci2-function-to-take-any-confidence-level-instead-of-only-95.-call-the-new-function-my_ci3.-you-should-add-an-argument-to-your-function-for-confidence-level.}{%
+\subsubsection{\texorpdfstring{15) Update the \texttt{my\_CI2} function
+to take any confidence level instead of only 95\%. Call the new function
+\texttt{my\_CI3}. You should add an argument to your function for
+confidence
+level.}{15) Update the my\_CI2 function to take any confidence level instead of only 95\%. Call the new function my\_CI3. You should add an argument to your function for confidence level.}}\label{update-the-my_ci2-function-to-take-any-confidence-level-instead-of-only-95.-call-the-new-function-my_ci3.-you-should-add-an-argument-to-your-function-for-confidence-level.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_CI3 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(point\_estimate, se, confidence\_level) \{}
+  \ControlFlowTok{if}\NormalTok{ (confidence\_level }\SpecialCharTok{\textless{}=} \DecValTok{0} \SpecialCharTok{||}\NormalTok{ confidence\_level }\SpecialCharTok{\textgreater{}=} \DecValTok{1}\NormalTok{) \{}
+    \FunctionTok{stop}\NormalTok{(}\StringTok{"Confidence level must be between 0 and 1"}\NormalTok{)}
+\NormalTok{  \}}
+  
+\NormalTok{  z\_value }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ confidence\_level) }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)}
+  
+\NormalTok{  lower\_bound }\OtherTok{\textless{}{-}}\NormalTok{ point\_estimate }\SpecialCharTok{{-}}\NormalTok{ z\_value }\SpecialCharTok{*}\NormalTok{ se}
+\NormalTok{  upper\_bound }\OtherTok{\textless{}{-}}\NormalTok{ point\_estimate }\SpecialCharTok{+}\NormalTok{ z\_value }\SpecialCharTok{*}\NormalTok{ se}
+  
+  \FunctionTok{c}\NormalTok{(lower\_bound, upper\_bound)}
+\NormalTok{\}}
+
+\NormalTok{ci\_90 }\OtherTok{\textless{}{-}} \FunctionTok{my\_CI3}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.90}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(ci\_90)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6579415  0.6579415
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ci\_99 }\OtherTok{\textless{}{-}} \FunctionTok{my\_CI3}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.99}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(ci\_99)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.030332  1.030332
+\end{verbatim}
+
+\emph{Hint: Use the} \texttt{qnorm} \emph{function to find the
+appropriate z-value. For example, for a 95\% confidence interval, using}
+\texttt{qnorm(0.975)} \emph{gives approximately 1.96.}
+
+\hypertarget{without-hardcoding-any-numbers-in-the-code-find-a-99-confidence-interval-for-ethnic-heterogeneity-in-the-angell-dataset.-find-the-standard-error-by-dividing-the-standard-deviation-by-the-square-root-of-the-sample-size.}{%
+\subsubsection{16) Without hardcoding any numbers in the code, find a
+99\% confidence interval for Ethnic Heterogeneity in the Angell dataset.
+Find the standard error by dividing the standard deviation by the square
+root of the sample
+size.}\label{without-hardcoding-any-numbers-in-the-code-find-a-99-confidence-interval-for-ethnic-heterogeneity-in-the-angell-dataset.-find-the-standard-error-by-dividing-the-standard-deviation-by-the-square-root-of-the-sample-size.}}
+
+\textless\textless\textless\textless\textless\textless\textless{} HEAD
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{se\_ethhet }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(angell\_stata))}
+\NormalTok{mean\_ethhet }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{ethhet)}
+\NormalTok{ethhetCI}\OtherTok{\textless{}{-}}\FunctionTok{my\_CI3}\NormalTok{(mean\_ethhet, se\_ethhet, }\FloatTok{0.99}\NormalTok{)}
+\NormalTok{ethhetCI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 23.35425 39.38993
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  The 99\% confidence interval for Ethnic Heterogeneity is
+  \([23.35425, 39.38993]\).
+\end{itemize}
+
+\hypertarget{write-a-function-that-you-can-apply-to-the-angell-dataset-to-get-95-confidence-intervals.-the-function-should-take-one-argument-a-vector.-use-if-else-statements-to-output-na-and-avoid-error-messages-if-the-column-in-the-data-frame-is-not-numeric-or-logical.}{%
+\subsubsection{\texorpdfstring{17) Write a function that you can
+\texttt{apply} to the Angell dataset to get 95\% confidence intervals.
+The function should take one argument: a vector. Use if-else statements
+to output NA and avoid error messages if the column in the data frame is
+not numeric or
+logical.}{17) Write a function that you can apply to the Angell dataset to get 95\% confidence intervals. The function should take one argument: a vector. Use if-else statements to output NA and avoid error messages if the column in the data frame is not numeric or logical.}}\label{write-a-function-that-you-can-apply-to-the-angell-dataset-to-get-95-confidence-intervals.-the-function-should-take-one-argument-a-vector.-use-if-else-statements-to-output-na-and-avoid-error-messages-if-the-column-in-the-data-frame-is-not-numeric-or-logical.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_CI4 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(column) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{is.numeric}\NormalTok{(column) }\SpecialCharTok{|}\FunctionTok{is.logical}\NormalTok{(column)) \{}
+\NormalTok{    mean\_value }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(column, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    se }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{var}\NormalTok{(column, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(column))}
+\NormalTok{    z\_value }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)  }\CommentTok{\# 95\% confidence interval}
+    
+\NormalTok{    lower\_bound }\OtherTok{\textless{}{-}}\NormalTok{ mean\_value }\SpecialCharTok{{-}}\NormalTok{ z\_value }\SpecialCharTok{*}\NormalTok{ se}
+\NormalTok{    upper\_bound }\OtherTok{\textless{}{-}}\NormalTok{ mean\_value }\SpecialCharTok{+}\NormalTok{ z\_value }\SpecialCharTok{*}\NormalTok{ se}
+    
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(lower\_bound, upper\_bound))}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{return}\NormalTok{(}\ConstantTok{NA}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(angell\_stata, }\DecValTok{2}\NormalTok{, my\_CI4) }\DocumentationTok{\#\# Apply this function to each column of Agell}
+
+\NormalTok{result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   city morint ethhet geomob region 
+##     NA     NA     NA     NA     NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{is.numeric}\NormalTok{(angell\_stata}\SpecialCharTok{$}\NormalTok{morint)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\end{document}

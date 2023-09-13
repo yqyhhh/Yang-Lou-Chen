@@ -3,10 +3,10 @@ title: "Assignment1-1 Chen"
 author: "Chloe Chen"
 date: "2023-09-08"
 output:
-  pdf_document: default
   html_document:
     theme: paper
     highlight: textmate
+  pdf_document: default
 fontsize: 12pt
 number_sections: yes
 ---
@@ -21,7 +21,7 @@ Turn in this assignment as an HTML or PDF file to ELMS. Make sure to include the
 
 -   At least one commit with your name, with a description of what you did in that commit.
 
-* $https://github.com/yqyhhh/Yang-Lou-Chen.git$
+* <https://github.com/yqyhhh/Yang-Lou-Chen.git>
 
 =======
 ## Reading Data
@@ -61,13 +61,20 @@ head(angell_txt)
 mean(angell_stata$ethhet)
 median(angell_stata$ethhet)
 sd(angell_stata$ethhet)
+```
 
+```{r}
 library(dplyr)
-angell_stata%>%
-  group_by(region)%>%
-  summarize(m=mean(angell_stata$ethhet),
-            med=median(angell_stata$ethhet),
-            sd=sd(angell_stata$ethhet))
+result <- angell_stata %>%
+  group_by(region) %>%
+  summarise(
+    Mean_ethhet = mean(ethhet, na.rm = TRUE),
+    Median_ethhet = median(ethhet, na.rm = TRUE),
+    SD_ethhet = sd(ethhet, na.rm = TRUE)
+  )
+
+print(result)
+
 ```
 
 ## Describing Data
@@ -97,8 +104,10 @@ class(Boston)
 
 ### 10\) How many of the suburbs in the Boston data set bound the Charles river?
 ```{r}
-summary(Boston$chas)
-nsub<-506*mean(Boston$chas)
+sumtable<-summary(Boston$chas)
+tabB<- dim(Boston)
+NBos<-tabB[1]
+nsub<-NBos*mean(Boston$chas)
 nsub
 ```
 * There $35$ suburbs set bound the Charles river.
@@ -126,7 +135,7 @@ boxplot(Boston$tax, main="Boxplot of ptratio",
 
 * The range of crime is $[0.00632, 88.9762]$; the range of tax is $[187, 711]$; the range of ptratio is $[12.6, 22]$.
 * As we can see from the ranges and box-plots, there are particularly high crime rates in several suburbs.
-* That doesn't exist in the other two viriables. The range of tax is larger than ptratio, but there are no outliers occur. ptratio is the most compactly distributed data, with little difference between suburbs on this variable.
+* That doesn't exist in the other two variables. The range of tax is larger than ptratio, but there are no outliers occur. ptratio is the most compactly distributed data, with little difference between suburbs on this variable.
 
 
 ### 12\) Describe the distribution of pupil-teacher ratio among the towns in this data set that have a per capita crime rate larger than 1. How does it differ from towns that have a per capita crime rate smaller than 1?
@@ -141,12 +150,12 @@ var(subset1$ptratio)
 var(subset2$ptratio)
 
 #Box plot
-boxplot(subset1$ptratio)
-boxplot(subset2$ptratio)
+boxplot(subset1$ptratio, main="crim > 1 Box plot")
+boxplot(subset2$ptratio, main="crim <= 1 Box plot")
 
 #Histogram
-hist(subset1$ptratio)
-hist(subset2$ptratio)
+hist(subset1$ptratio, main="crim > 1 Hist")
+hist(subset2$ptratio, main="crim <= 1 Hist")
 
 #Q-Q plot & Conduct statistical tests
 library(ggplot2)
@@ -157,9 +166,6 @@ qqline(subset2$ptratio, col="blue",lwd=2)
 shapiro.test(subset1$ptratio)
 shapiro.test(subset2$ptratio)
 
-
-
-
 ```
 *Measures of Central Tendency*
 The pupil-teacher ratio among the towns in this data set that have a per capita crime rate larger than 1 has a mean of $19.29$ and a median of $20.20$.
@@ -169,7 +175,6 @@ The pupil-teacher ratio among the towns in this data set that have a per capita 
 In Shapiro-Wilk normality test, p-value < 0.05, and from the histogram, as well as the qq-plot, homeprice does not appear to follow a normal distribution.
 *Outliers*
 From the box plot we can see that there are $4$ outliers in the distribution.
-
 
 
 ## Writing Functions
@@ -248,7 +253,7 @@ ethhetCI
 
 ```{r}
 my_CI4 <- function(column) {
-  if (is.numeric(column) |is.logical(column)) {
+  if (is.numeric(column)==TRUE |is.logical(column)==TRUE) {
     mean_value <- mean(column, na.rm = TRUE)
     se <- sqrt(var(column, na.rm = TRUE) / length(column))
     z_value <- qnorm(0.975)  # 95% confidence interval
@@ -263,12 +268,10 @@ my_CI4 <- function(column) {
 }
 
 
-result <- apply(angell_stata, 2, my_CI4) ## Apply this function to each column of Agell
+result <- lapply(angell_stata, my_CI4) ## Apply this function to each column of Agell
 
 result
 
 ```
-```{r}
-is.numeric(angell_stata$morint)
-```
+
 
